@@ -36,7 +36,10 @@
 
 ### 4. 合并分支
  需求: 把wbj_dev分支合并到development分支
- 1. 先切换到developpment分支,在执行git merge wbj_dev
+ 1. 先切换到developpment分支,在执行git merge wbj_dev(分支名)
+ 2. git push 上传代码
+
+### 5. 解决冲突
 
 
 
