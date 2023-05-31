@@ -7,7 +7,6 @@
 # 4. 远端仓库克隆到桌面
 # 5. 将本地修改的代码上传至远程仓库
 
-
 # 第二趴  分支管理
 ### 1. 主分支: 公司中也有叫master分支的
 ### 2. 公司实际开发过程中的环境介绍
@@ -40,8 +39,14 @@
  2. git push 上传代码
 
 ### 5. 解决冲突
+ 产生的原因: 两个人修改同一行代码
+ 解决方案: 1. 当自己的需求重要时,以自己需求为准
+          2. 当不确定的时候,和同事一起商量修改
+ 
 
-
+### 6.回退和前进版本
+ 1.git log/git  reflog 查看commitID
+ 2.在执行git reset --hard commid  进行前进和后退版本
 
 
 
@@ -56,3 +61,10 @@
     git remote add origin https://github.com/threeSunlight/demo3.git
     git push -u origin main
     git branch name
+
+4. 将本地新建分支推送到远端
+git push orgin 分支名
+5. 查看commitID git log/git reflog
+5. 回退版本
+git reset --hard commitID
+

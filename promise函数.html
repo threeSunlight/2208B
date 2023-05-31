@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise基本语法</title>
+</head>
+<body>
+    <!-- 
+        promise
+        一、产生的原因
+         1. 解决异步回调地狱的问题
+         2. 解决信任问题
+         3. 解决捕获错误能力
+         4. 解决多个任务回调后导致多件事情顺序执行，性能消耗过多
+        二、概念
+            promise是一个容器,里面包裹着异步操作的代码,
+            从语法上说，Promise 是一个对象，从它可以获取异步操作的消息
+        三、特点
+            1. 有三个状态: `pending`（进行中）、`fulfilled`（已成功）和`rejected`（已失败）
+            2. 状态的变化只有两种情况: 
+                (1) 从pending到fulfilled,从进行中到已成功
+                (1) 从pending到rejected,从进行中到已失败
+            3. 状态一旦固定,不会改变
+        四、方法
+            1 .then
+                成功的回调
+                then方法的返回结果是 Promise 对象, 对象状态由回调函数的执行结果决定
+            2 .catch
+                失败的回调
+                概念: catch 捕获整个的错误信息   大部分的时候就是 then的第二个参数的语法糖,他不会堵塞代码块，并且会捕获then的成功函数的错误,可以捕捉到reject和promise的错误信息
+            3. 链式调用
+                上一个then通过return返回值后,下一个then可以获取到上一个then 的值
+                1. 链式调用可以同时调用多个函数请求
+                2. 当把每一次链式调用的返回值return出去后,下一个then将会获取到上一个then中的值
+        五、原理
+            底层是根据 new XMLHttpRequest()建立网络连接
+            
+
+
+
+     -->
+    <script>
+        //实例化 Promise 对象
+        const p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                
+                let data = '数据库中的用户数据';
+              
+                resolve(data);
+
+                // let err = '数据读取失败';
+                // reject(err);
+            }, 1000);
+        });
+
+        //调用 promise 对象的 then 方法
+        p.then( res => {
+            console.log(res, 'res');
+        }).catch( err => {
+            console.log(err, 'err');
+        })
+
+        // p.then( 
+        //     (res) => {
+        //         console.log(res, 'res');
+        //     },
+        //     (err) => {
+        //         console.log(err, 'err');
+        //     }
+        // )
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box1">
+        <h3 style="text-align: center;">点击切换颜色</h3>
+        <div class="box2">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <script>
+        const boxes = document.querySelectorAll(".box");
+        boxes.forEach((box) => {
+            box.addEventListener("click", () => {
+                box.classList.toggle("box-clicked");
+            });
+        });
+        /**
+         * 1. 使用css原生的切换方法toggle 
+         * 2. 设置一个独立标识,判断该标识是否存在,进行添加和移除样式
+         * 3. 使用css中的contains判断是否有该样式,添加和移除样式
+         * 
+         * 
+         * **/
+    </script>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .box1 {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .box2 {
+        display: flex;
+    }
+
+    .box {
+        width: 40px;
+        height: 20px;
+        border: 1px solid #eee;
+        margin: 0 10px;
+    }
+
+    .box-clicked {
+        background-image: linear-gradient( #6b8bff, #c0392b);
+        /* background-image: radial-gradient(circle at center, #6b6bff, #c0392b); */
+
+    }
+</style>
+
+</html>

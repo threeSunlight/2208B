@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   /***
+    * 变量的结构赋值 分为
+    * 1. 对象的结构
+    * 2. 数组的结构
+    *   特点: 按照下标进行结构
+    * ***/
+   // 1. 数组的结构
+   const PLAYER = ['UZI','MXLG','Ming','Letme', 'Meiko']
+   let [xiao, liu, zhao, song,a,c] = PLAYER
+   console.log(xiao, liu, zhao, song,a,c);
+    // 2. 对象的结构
+    const Class = {
+        name: '2208B',
+        info: {
+            class: '202',
+            floor: 2
+        }
+    }
+
+    const {name, info:{class: classNAme,floor}} = Class
+    console.log(name, floor, classNAme);
+</script>
+</html>

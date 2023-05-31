@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Promise.prototype.then</title>
+	</head>
+	<body>
+		<script>
+			//创建 promise 对象
+			const p = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					resolve('返回成功结果');
+				}, 1000);
+			});
+
+			// 链式调用
+			const result = p.then(
+				(value) => {
+					return 'iloveyou';
+				},
+				//处理异常情况
+				(err) => {
+					console.log(err);
+				},
+			);
+
+			result
+				.then((res) => {
+					console.log(res);
+                    return res
+				})
+				.then((res2) => {
+                    console.log(res2, 'res2');
+                     return res2 + `我想毕业`
+                })
+				.then((res3) => {
+                    console.log(res3);
+                });
+		</script>
+	</body>
+</html>
