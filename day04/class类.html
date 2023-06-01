@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body></body>
+	<script>
+		// es5的类的方法
+		// 通过构造函数来进行实例化对象,并且添加方法
+		function Point(x, y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		Point.prototype.toString = function () {
+			return '(' + this.x + ', ' + this.y + ')';
+		};
+
+		var p = new Point(1, 2);
+		console.log(p);
+		let result = p.toString();
+		console.log(result);
+
+		//es6的方法
+		class Points {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+
+			toString() {
+				return '(' + this.x + ', ' + this.y + ')';
+			}
+		}
+		var p = new Points(1,2);
+        let result12 = p.toString()
+        console.log(result12,'result12');
+	</script>
+</html>
