@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    let number = {
+        RED: 'red'
+    }
+    
+    let person = {
+        name: '张杰',
+        job: '歌手'
+    }
+
+    Object.defineProperty(person, 'age', {
+        value: number,
+     	// enumerable:true, //控制属性是否可以枚举，默认值是false
+		writable:true, //控制属性是否可以被修改，默认值是false
+		configurable:true, //控制属性是否可以被删除，默认值是false
+        // 获取属性名称
+        // get() {
+        //     console.log('触发了get属性');
+        //     return number
+        // },
+
+        // set(value) {
+        //     console.log('触发了set属性', value);
+        //     age = value
+        // }
+    })
+
+</script>
+</html>

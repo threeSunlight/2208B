@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气的监听</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 准备一个容器 -->
+    <div id="app">
+        <!-- 第一种: cool -->
+        <!-- 今天天气很{{ cool }} -->
+        <!-- 第二种: 状态变化结合三元表达式 -->
+        <!-- 今天天气很{{ status? '凉爽' : '炎热' }}
+        <button @click="changeWeather">切换天气</button> -->
+        <!-- 第三种: 计算属性 -->
+         <!-- 今天天气很{{ info }}
+        <button @click="changeWeather">切换天气</button> -->
+         <!-- 第四种:watch监听 -->
+        <!-- 今天天气很{{ cool }}
+        <button @click="changeWeather">切换天气</button> -->
+        <!-- 第五种 watch深度监听 -->
+        <hr/>
+        <h3>b的值是:{{a.b}}</h3>
+        <button @click="a.b++">点我让b+1</button>
+        <h3>e的值是:{{a.c.e}}</h3>
+        <button @click="a.c.e++">点我让e+1</button>
+        <button @click="a = {v:666,b:888}">彻底替换掉a</button>
+        {{a.c.f.g}}   
+    </div>
+    <!-- 
+			1. watch监听是异步的
+			2. 没有缓存,可以请求接口
+			3. 有配置项,
+                深度监听对象是否变化的时候配置:
+                deep,
+                立即执行
+                immediate
+			4. watch监听的属性,必须在data中声明
+				监视属性watch：
+					1.当被监视的属性变化时, 回调函数自动调用, 进行相关操作
+					2.监视的属性必须存在，才能进行监视！！
+					3.监视的两种写法：
+							(1).new Vue时传入watch配置
+							(2).通过vm.$watch监视
+		 -->
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                cool: '炎热',
+                status: true,
+                a: {
+                    b: 100,
+                    c: {
+                        e: 200,
+                        f: {
+                            g: 300
+                        }
+                    }
+                }
+            }
+        },
+        watch: {
+            //完整写法
+            // status: {
+            //     immediate: true,
+            //     handler(newValue,oldValue) {
+            //         console.log(newValue,oldValue);
+            //         this.cool = newValue? '炎热' : '凉爽'
+            //     }
+            // }
+            // 简写方式
+            // status(newValue,oldValue) {
+            //     console.log(newValue,oldValue);
+            //     this.cool = newValue? '炎热' : '凉爽'
+            // }
+            'a': {
+                deep: true,
+                handler(newValue,oldValue) {
+                    console.log(newValue,oldValue);
+                    axios.get()
+                }
+            }
+        },
+        computed: {
+            info() {
+                return this.status ? '炎热' : '凉爽'
+            }
+        },
+        methods: {
+            // 第一种
+            // changeWeather() {
+            //     this.cool = this.cool === '炎热' ? '凉爽' : '炎热'
+            // },
+            //第二种
+            changeWeather() {
+                this.status = !this.status 
+            }
+        }
+    })
+</script>
+</html>

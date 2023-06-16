@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件判断</title>
+    <script src="../../day12/js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 
+				条件渲染：
+							1.v-if
+										写法：
+												(1).v-if="表达式" 
+												(2).v-else-if="表达式"
+												(3).v-else="表达式"
+										适用于：切换频率较低的场景。
+										特点：不展示的DOM元素直接被移除。
+										注意：v-if可以和:v-else-if、v-else一起使用，但要求结构不能被“打断”。
+                            v-if移除dom元素后,会在该位置留下一个标识符,下次更新dom时,会优先查找有标识符的地方进行dom对比
+							2.v-show
+										写法：v-show="表达式"  动态的添加和移除,display: none这个样式
+										适用于：切换频率较高的场景。
+										特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+								
+							3.备注：使用v-if的时，元素可能无法获取到，而使用v-show一定可以获取到。
+		 -->
+    <!-- 准备一个容器 -->
+    <div id="app">
+        <div v-if="flag">
+            <h1 v-if="flag">压力面前保持优雅</h1>
+            <h1 v-else-if="status">今天周三</h1>
+            <h1 v-else>失败不是悲剧,放弃才是</h1>
+            <button @click="changeSTtuas">点我展示今天是最后一句</button>
+        </div>
+        <div v-if="status">
+            <h1>测试</h1>
+        </div>  
+
+        <!-- v-show -->
+        <div v-show="flag">
+            <h1 v-if="flag">压力面前保持优雅</h1>
+            <h1 v-else-if="status">今天周三</h1>
+            <h1 v-else>失败不是悲剧,放弃才是</h1>
+            <button @click="changeSTtuas">点我展示今天是最后一句</button>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            flag: true,
+            status: false,
+        },
+        methods: {
+            changeSTtuas() {
+                this.flag = !this.flag
+            }
+        },
+    })
+</script>
+</html>

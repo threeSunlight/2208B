@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 
+         需求: 有一个姓和一个名,
+         1.需要再页面上一起展示,
+         2.修改其中一个值的时候实现双向绑定
+     -->
+     <div id="app">
+        <!-- 第一种 v-model-->
+        <!-- <div>{{firstName }}-{{lastName}}</div>
+        姓: <input type="text" v-model="firstName"></input>
+        名: <input type="text" v-model="lastName"></input> -->
+        <hr/>
+        <!-- 第二种  v-bind  v-on   -->
+        <!-- <div>{{firstName }}-{{lastName}}</div>
+        姓: <input type="text" :value="firstName" @input="handleFirst"></input>
+        名: <input type="text" :value="lastName" @input="handleLast"></input> -->
+        <hr/>
+        <!-- 第三种 计算属性 -->
+        <div>{{firstName }}-{{lastName}}</div><br/>
+        全名: {{ fullName }}<br/>
+        全名: <input type="text" v-model="fullName"></input>
+        姓: <input type="text" v-model="firstName"></input>
+        名: <input type="text" v-model="lastName"></input>
+     </div>
+     <!-- 计算属性的特点 
+     		        1.定义：要计算的属性在data中不存在，要通过data中已有属性进行计算。
+					2.原理：底层借助了Objcet.defineproperty方法提供的getter和setter。
+					3.get函数什么时候执行？
+								(1).初次读取时会执行一次。
+								(2).当依赖的数据发生改变时会被再次调用。
+					4.优势：与methods实现相比，内部有缓存机制（复用），效率更高，调试方便。
+					5.备注：
+							1.计算属性最终会出现在vm上，直接读取使用即可。
+							2.如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖的数据发生改变。
+        1. 计算属性是同步的
+        2. 计算属性有缓存性
+        3. 计算属性依赖的属性值,必须在data中已经定义,或者说已存在,当依赖值发生变化时,会重新计算
+        4. 计算属性声明的值,在data中不能存在
+        5. 计算属性最终会出现在vm上，直接读取使用即可
+        6. 底层借助了Objcet.defineproperty方法提供的getter和setter。
+     -->
+     
+</body>
+<script>
+   new Vue({
+    data: {
+        firstName: '富察',
+        lastName: '狗蛋'
+    },
+
+    computed: {
+        /** 计算属性的完整写法 ***/
+        // fullName: {
+        //     get() {
+        //         return this.firstName + '-' + this.lastName
+        //     },
+        //     set(newValue) {
+        //         console.log(newValue);
+        //         // slice
+        //         let result = newValue.split("-")
+        //         console.log(result);
+        //         this.firstName = result[0]
+        //         this.lastName = result[1]
+        //     }
+        // }
+        /**计算属性的简写方式 只是用来获取结果,展示内容**/
+        fullName() {
+            return this.firstName + '-' + this.lastName
+        }
+    },
+    methods: {
+        /** 姓 */
+        handleFirst(e) {
+            console.log(e.target.value);
+            this.firstName = e.target.value
+        },
+                /** 名 */
+        handleLast(e) {
+            this.lastName = e.target.value
+      }
+
+    }
+   }).$mount("#app")
+
+</script>
+</html>

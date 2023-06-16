@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+		事件的基本使用：
+			1.使用v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名；
+			2.事件的回调需要配置在methods对象中，最终会在vm上；
+			3.methods中配置的函数，不要用箭头函数！否则this就不是vm了；
+			4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；
+			5.@click="demo" 和 @click="demo($event)" 效果一致，但后者可以传参；
+	-->
+    <div id="app">
+        <!-- <button v-on:click="handleToday">点击</button> -->
+        <button @click="handleToday">点击</button>
+        <button @click="handleTodays($event,1,2,3,4)" name="ddd">点击</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        data: {
+
+        },
+        methods: {
+            handleToday() {
+                console.log('万恶的周一');
+            },
+            handleTodays(event,...agrs) {
+                console.log(event,'event');
+                console.log(agrs);
+            }
+        }
+    }).$mount("#app")
+</script>
+</html>
